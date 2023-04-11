@@ -1,0 +1,22 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: company
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 37FCRrSDzBawsynj
+    url: jdbc:mysql://47.96.236.125:3306/rank
+    username: rank
+  jpa:
+    database: mysql
+    show-sql: true
+    open-in-view: true
+  redis:
+    host: 47.96.236.125
+    port: 6379
+    password: gaoyifeng
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.96.236.125:8848

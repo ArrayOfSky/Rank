@@ -1,0 +1,49 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: gateway
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 37FCRrSDzBawsynj
+    url: jdbc:mysql://47.96.236.125:3306/rank
+    username: rank
+  jpa:
+    database: mysql
+    show-sql: true
+    open-in-view: true
+  redis:
+    host: 47.96.236.125
+    port: 6379
+    password: gaoyifeng
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.96.236.125:8848
+    gateway:
+      routes:
+        - id: company # 路由标示，必须唯一
+          uri: lb://company # 路由的目标地址
+          predicates: # 路由断言，判断请求是否符合规则
+            - Path=/company/** # 路径断言，判断路径是否是以/user开头，如果是则符合
+        - id: oaa # 路由标示，必须唯一
+          uri: lb://oaa # 路由的目标地址
+          predicates: # 路由断言，判断请求是否符合规则
+            - Path=/oaa/** # 路径断言，判断路径是否是以/user开头，如果是则符合
+        - id: system # 路由标示，必须唯一
+          uri: lb://system # 路由的目标地址
+          predicates: # 路由断言，判断请求是否符合规则
+            - Path=/system/** # 路径断言，判断路径是否是以/user开头，如果是则符合
+        - id: table # 路由标示，必须唯一
+          uri: lb://table # 路由的目标地址
+          predicates: # 路由断言，判断请求是否符合规则
+            - Path=/table/** # 路径断言，判断路径是否是以/user开头，如果是则符合
+feign:
+  hystrix:
+    enabled: true
+    #开启feign断路器 依赖hystrix包
+  client:
+    config:
+      default:
+        connect-timeout: 60000
+        read-timeout: 60000

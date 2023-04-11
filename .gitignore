@@ -1,0 +1,7 @@
+# Project exclude paths
+/Commom/target/
+/Company/target/
+/Gateway/target/
+/Oaa/target/
+/System/target/
+/Table/target/
